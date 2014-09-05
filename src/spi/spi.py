@@ -393,6 +393,8 @@ class SPI(object):
             data: Binary string to transmit
             speed: Optional temporary bitrate override in Hz. 0 (default)
                 uses existing spidev speed setting.
+            bits_per_word: Optional temporary bits_per_word override. 0 (
+                default) is equivalent to 8 bits per word.
             delay: Optional delay in usecs between sending the last bit and
                 deselecting the chip select line. 0 (default) for no delay.
 
