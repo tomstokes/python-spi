@@ -28,6 +28,7 @@ import ctypes
 import struct
 import fcntl
 import array
+import os.path
 
 
 def _ioc(direction, number, structure):
@@ -129,6 +130,10 @@ class SPI(object):
         if isinstance(device, tuple):
             (bus, dev) = device
             device = "/dev/spidev{:d}.{:d}".format(bus, dev)
+
+        if not os.path.exists(device):
+            raise IOError("{} does not exist".format(device))
+
         self.handle = open(device, "w+")
 
         if speed is not None:
