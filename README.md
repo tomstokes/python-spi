@@ -27,8 +27,8 @@ A pure Python SPI interface using the Linux spidev device
     spi.mode = SPI.MODE_0
     spi.bits_per_word = 8
     spi.speed = 500000
-    received = spi.transfer("\xAA\xBB\xCC")
-    spi.write("\x00\x11\x22")
+    received = spi.transfer([0x11, 0x22, 0xFF])
+    spi.write([0x12, 0x34, 0xAB, 0xCD])
     received = spi.read(10)
 
 
