@@ -362,14 +362,25 @@ class SPI(object):
     def mode(self, mode):
         self._set_mode(mode)
 
-    def write(self, data):
+    def write(self, data, speed=0, bits_per_word=0, delay=0):
         """Perform half-duplex SPI write.
 
         Args:
             data: Binary string of data to write
+            speed: Optional temporary bitrate override in Hz. 0 (default)
+                uses existing spidev speed setting.
+            bits_per_word: Optional temporary bits_per_word override. 0 (
+                default) is equivalent to 8 bits per word.
+            delay: Optional delay in usecs between sending the last bit and
+                deselecting the chip select line. 0 (default) for no delay.
         """
-        self.handle.write(data)
-        self.handle.flush()
+        length = len(data)
+        transmit_buffer = ctypes.create_string_buffer(str(data))
+        spi_ioc_transfer = struct.pack(SPI._IOC_TRANSFER_FORMAT,
+                                       ctypes.addressof(transmit_buffer), 0,
+                                       length, speed, delay, bits_per_word, 0,
+                                       0, 0, 0)
+        fcntl.ioctl(self.handle, SPI._IOC_MESSAGE, spi_ioc_transfer)
 
     def read(self, length, speed=0, bits_per_word=0, delay=0):
         """Perform half-duplex SPI read
