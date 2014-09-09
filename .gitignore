@@ -1,4 +1,7 @@
 *.py[cod]
 /build/
+/MANIFEST
+/dist/
+*.egg-info/
 
 .idea/
