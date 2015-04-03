@@ -421,8 +421,9 @@ class SPI(object):
         Returns:
             List of words read from SPI bus during transfer
         """
+        data = array.array('B', data).tostring()
         length = len(data)
-        transmit_buffer = ctypes.create_string_buffer(str(data))
+        transmit_buffer = ctypes.create_string_buffer(data)
         receive_buffer = ctypes.create_string_buffer(length)
         spi_ioc_transfer = struct.pack(SPI._IOC_TRANSFER_FORMAT,
                                        ctypes.addressof(transmit_buffer),
