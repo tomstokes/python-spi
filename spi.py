@@ -369,8 +369,8 @@ class SPI(object):
             data: List of words to write
             speed: Optional temporary bitrate override in Hz. 0 (default)
                 uses existing spidev speed setting.
-            bits_per_word: Optional temporary bits_per_word override. 0 (
-                default) is equivalent to 8 bits per word.
+            bits_per_word: Optional temporary bits_per_word override. 0
+                (default) will use the current bits_per_word setting.
             delay: Optional delay in usecs between sending the last bit and
                 deselecting the chip select line. 0 (default) for no delay.
         """
@@ -390,8 +390,8 @@ class SPI(object):
             length: Integer count of words to read
             speed: Optional temporary bitrate override in Hz. 0 (default)
                 uses existing spidev speed setting.
-            bits_per_word: Optional temporary bits_per_word override. 0 (
-                default) is equivalent to 8 bits per word.
+            bits_per_word: Optional temporary bits_per_word override. 0
+                (default) will use the current bits_per_word setting.
             delay: Optional delay in usecs between sending the last bit and
                 deselecting the chip select line. 0 (default) for no delay.
 
@@ -413,8 +413,8 @@ class SPI(object):
             data: List of words to transmit
             speed: Optional temporary bitrate override in Hz. 0 (default)
                 uses existing spidev speed setting.
-            bits_per_word: Optional temporary bits_per_word override. 0 (
-                default) is equivalent to 8 bits per word.
+            bits_per_word: Optional temporary bits_per_word override. 0
+                (default) will use the current bits_per_word setting.
             delay: Optional delay in usecs between sending the last bit and
                 deselecting the chip select line. 0 (default) for no delay.
 
