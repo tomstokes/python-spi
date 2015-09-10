@@ -30,6 +30,3 @@ A pure Python SPI interface using the Linux spidev device
     received = spi.transfer([0x11, 0x22, 0xFF])
     spi.write([0x12, 0x34, 0xAB, 0xCD])
     received = spi.read(10)
-
-
-
