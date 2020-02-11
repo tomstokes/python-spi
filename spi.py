@@ -29,6 +29,7 @@ import struct
 import fcntl
 import array
 import os.path
+import sys
 
 
 def _ioc(direction, number, structure):
@@ -57,6 +58,20 @@ def _ioc(direction, number, structure):
          (number << ioc_nrshift) | (size << ioc_sizeshift)
 
     return direction, op, structure
+
+def bytes2bytes(value):
+    """
+    Convert strings to arrays of integers leaving bytes values alone
+
+    Args:
+        value: a bytes object though on Python < 3.0 that's a string
+    
+    Returns: An array of integers python <= 2.7 or a bytes object python >= 3.0
+    """
+    if sys.version_info >= (3, 0):
+        return value
+    else:
+        return [ord(byte) for byte in value]
 
 
 class SPI(object):
@@ -134,7 +149,7 @@ class SPI(object):
         if not os.path.exists(device):
             raise IOError("{} does not exist".format(device))
 
-        self.handle = open(device, "w+")
+        self.handle = open(device, "w+b", buffering=0)
 
         if speed is not None:
             self.speed = speed
@@ -404,7 +419,7 @@ class SPI(object):
                                        length, speed, delay, bits_per_word, 0,
                                        0, 0, 0)
         fcntl.ioctl(self.handle, SPI._IOC_MESSAGE, spi_ioc_transfer)
-        return [ord(byte) for byte in ctypes.string_at(receive_buffer, length)]
+        return bytes2bytes(ctypes.string_at(receive_buffer, length))
 
     def transfer(self, data, speed=0, bits_per_word=0, delay=0):
         """Perform full-duplex SPI transfer
@@ -431,4 +446,4 @@ class SPI(object):
                                        length, speed, delay, bits_per_word, 0,
                                        0, 0, 0)
         fcntl.ioctl(self.handle, SPI._IOC_MESSAGE, spi_ioc_transfer)
-        return [ord(byte) for byte in ctypes.string_at(receive_buffer, length)]
+        return bytes2bytes(ctypes.string_at(receive_buffer, length))
