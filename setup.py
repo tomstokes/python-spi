@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name="spi",
-      version="0.2.0",
+      version="0.2.1",
       description="Pure Python SPI Interface using spidev",
       long_description="Pure Python SPI interface using spidev",
       author="Tom Stokes",
