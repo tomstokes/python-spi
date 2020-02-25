@@ -1,10 +1,8 @@
 # python-spi
 
-**Note:** python-spi is still under active development
+Python 3.x interface for SPI communications using Linux spidev
 
-## Overview
-
-A pure Python SPI interface using the Linux spidev device
+This is a fork of https://github.com/tomstokes/python-spi which seems to be abandoned with the python 3 compatibility patch proposed by Tom Egan applied.
 
 ## Features
 
