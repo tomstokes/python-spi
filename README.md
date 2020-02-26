@@ -1,4 +1,4 @@
-# python-spi
+# python3-spi
 
 Python 3.x interface for SPI communications using Linux spidev
 
@@ -19,7 +19,7 @@ This is a fork of https://github.com/tomstokes/python-spi which seems to be aban
   - As a last resort, running the python script as root should allow access to the spidev. **Note** This is not recommended. Use the 'spi' group or udev rules whenever possible.
 
 ## Example
-```python
+```python3
 import spi
 spi = SPI("/dev/spidev1.0")
 spi.mode = SPI.MODE_0
