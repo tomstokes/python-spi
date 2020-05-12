@@ -1,10 +1,8 @@
-# python-spi
+# python3-spi
 
-**Note:** python-spi is still under active development
+Python 3.x interface for SPI communications using Linux spidev
 
-## Overview
-
-A pure Python SPI interface using the Linux spidev device
+This is a fork of https://github.com/tomstokes/python-spi which seems to be abandoned with the python 3 compatibility patch proposed by Tom Egan applied.
 
 ## Features
 
@@ -21,7 +19,7 @@ A pure Python SPI interface using the Linux spidev device
   - As a last resort, running the python script as root should allow access to the spidev. **Note** This is not recommended. Use the 'spi' group or udev rules whenever possible.
 
 ## Example
-```python
+```python3
 import spi
 spi = SPI("/dev/spidev1.0")
 spi.mode = SPI.MODE_0
