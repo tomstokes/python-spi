@@ -22,7 +22,7 @@ A pure Python SPI interface using the Linux spidev device
 
 ## Example
 ```python
-import spi
+from spi import SPI
 spi = SPI("/dev/spidev1.0")
 spi.mode = SPI.MODE_0
 spi.bits_per_word = 8
